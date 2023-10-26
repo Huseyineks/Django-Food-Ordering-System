@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+
+
+
+{% block container %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <!-- {{ form.as_p }} -->
+    
+    <button type = "submit" value = "Submit" class = "btn btn-warning">Ekle</button>
+
+</form>
+
+
+
+{% endblock %}
