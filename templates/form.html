@@ -1,17 +1,96 @@
-{% extends 'main.html' %}
-
-
-
-{% block container %}
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <!-- {{ form.as_p }} -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      body{
+         height: 300vh;
+      }
+       .box{
+        
+        padding: 20px;
+        border-radius: 3%;
+        
+       } 
+       .box:hover{
+        color: red;
+        background:rgb(0,0,0,0.1);
+       }
+      
+       input[type = 'radio']{
+        display: none;
+       }
+       label{
+        display: flex;
+        gap: 10px
+        ;
+       }
+       label::before{
+       
+        content: "";
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        border: 2px solid rgb(223, 41, 41);
+       }
+       .box:hover label::before{
+          height: 13px;
+    width: 13px;
+    border: 3px solid rgb(223, 41, 41); 
     
-    <button type = "submit" value = "Submit" class = "btn btn-warning">Ekle</button>
+       }
+       input[type = 'radio']:checked +  label::before{
+        height: 9px;
+    width: 9px;
+    border: 5px solid rgb(223, 41, 41);
+       }
+       button{
+         padding: 5px; 
+         background-color:rgb(223, 41, 41) ; 
+         border-radius: 10px; 
+         width: 15%; 
+         margin-top: 10px; 
+         color: aliceblue; 
+         border: 1px solid;
 
+       }
+       button:hover{
+         width: 20%;
+       }
+
+    </style>
+</head>
+<body>
+   <form method="post">
+      {% csrf_token %}
+    <div>
+    <h2>Size</h2>
+    <div class="box">
+   <input type="radio" id="Large" name="size" value="Large">
+   <label for="Large">Large</label>
+</div>
+<div class="box">
+   <input type="radio" id="Medium" name="size" value="Medium">
+   <label for="Medium">Medium</label></div>
+   <div class="box">
+   <input type="radio" id="Small" name="size" value="Small">
+   <label for="Small">Small</label></div>
+   </div>
+    <div>
+    <h2>How</h2>
+    <div class="box">
+   <input type="radio" id="Iced" name="temp" value="Iced">
+   <label for="Iced">Iced</label>
+</div>
+<div class="box">
+   <input type="radio" id="Hot" name="temp" value="Hot">
+   <label for="Hot">Hot</label></div>
+
+   <textarea name="request" id="" cols="70" rows="10" placeholder="Please mention more..." style="border-radius: 20px; padding: 10px; margin-top: 30px;"></textarea>
+   </div>
+   <button type="submit" value="Submit">Add</button>
 </form>
-
-
-
-{% endblock %}
+</body>
+</html>

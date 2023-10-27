@@ -4,6 +4,7 @@ from user import views
 app_name = 'user'
 urlpatterns = [
    
-    path('form/', views.OptionsFormView,name='form'),
+    path('form/', views.OptionsFormView.as_view(),name='form'),
+    
 
 ]
