@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+       
+        label{
+            display: block;
+            margin-bottom: 15px;
+            
+        }
+        .form{
+            
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            padding: 20px;
+            
+        }
+        button{
+            
+            margin-top: 20px;
+            width: 100%;
+            height: 50px;
+            border: 1px ;
+            border-radius: 20px;
+            background-color: rgb(223, 41, 41);
+            color: aliceblue;
+        }
+        button:hover{
+            border-radius: 15px;
+        }
+        input{
+            padding: 15px;
+            height: 60px;
+            width: 500px;
+            border:1px solid;
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .a{
+            margin-left: 5px;
+            margin-top: 15px;
+            color: black;
+            text-decoration: underline;
+        }
+       
+      
+
+        
+    </style>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="form">
+        <h2 style="text-align: center;">Sign Up</h2>
+        <div class="content">
+            <label for="Username" style="margin-left: 5px;">Username</label>
+        <input type="text" name="username" id="Username" placeholder="Username">
+    </div>
+        <div class="content">
+            <label for="Email" style="margin-left: 5px;">Email</label>
+        <input type="email" name="email" id="Email" placeholder="Email">
+    </div>
+    <div class="content">
+        <label for="Password" style="margin-left: 5px;">Password</label>
+        <input type="password" name="password" id="Password" placeholder="Password"></div>
+    <div class="content">
+        <label for="Confirm Password" style="margin-left: 5px;">Confirm Password</label>
+        <input type="password" name="confirm-password" id="Confirm Password" placeholder="Confirm Password"></div>
+        
+        <button type="submit" value="Submit">Sign Up</button>
+        {% if error  %}
+          <div class="alert alert-danger" style="margin-top: 10px;">
+            Passwords must be same
+          </div>
+        {% elif error2 %}
+        <div class="alert alert-danger" style="margin-top: 10px;">
+            Fill in the blanks
+          </div>
+          {% endif %}
+        <div class="a">
+            <a href="{% url 'user:login' %}" style="color: #000000;">I have an account</a></div>
+            </div>
+        
+
+
+
+
+
+
+    </form>
+</body>
+</html>
