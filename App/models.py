@@ -12,5 +12,8 @@ class Options(models.Model):
 
 class Paying(models.Model):
 
-   payoptions = models.CharField(max_length=50) 
+   payoptions = models.CharField(max_length=50)
+
+   def __str__(self):
+     return self.payoptions
 

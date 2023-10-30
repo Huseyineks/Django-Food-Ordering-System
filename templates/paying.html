@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+       .box{
+        
+        padding: 20px;
+        border-radius: 3%;
+        
+       } 
+       .box:hover{
+        color: red;
+        background:rgb(0,0,0,0.1);
+       }
+      
+       input[type = 'radio']{
+        display: none;
+       }
+       label{
+        display: flex;
+        gap: 10px
+        ;
+       }
+       label::before{
+       
+        content: "";
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        border: 2px solid rgb(223, 41, 41);
+       }
+       .box:hover label::before{
+          height: 13px;
+    width: 13px;
+    border: 3px solid rgb(223, 41, 41); 
+    
+       }
+       input[type = 'radio']:checked +  label::before{
+        height: 9px;
+    width: 9px;
+    border: 5px solid rgb(223, 41, 41);
+       }
+     
+       button{
+         padding: 5px; 
+         background-color:rgb(223, 41, 41) ; 
+         border-radius: 10px; 
+         width: 15%; 
+         margin-top: 10px; 
+         color: aliceblue; 
+         border: 1px solid;
+
+       }
+       button:hover{
+         width: 20%;
+       }
+       .flex{
+        height: 80vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+       }
+    
+    </style>
+</head>
+<body>
+    <div class="flex">
+   <form method="post">
+      {% csrf_token %}
+    <h2>Choose How to Pay</h2>
+    <div class="flex">
+    <div class="box">
+   <input type="radio" id="Online Credit Card" name="payoptions" value="Online Credit Card">
+   <label for="Online Credit Card">Online Credit Card</label>
+</div>
+<div class="box">
+   <input type="radio" id="Cash" name="payoptions" value="Cash">
+   <label for="Cash">Cash</label></div>
+   <div class="box">
+   <input type="radio" id="Credit Card At The Door" name="payoptions" value="Credit Card At The Door">
+   <label for="Credit Card At The Door">Credit Card At The Door</label></div>
+   <button type="submit" value="Submit">Confirm</button>
+   </div>
+</div>
+</form>
+</body>
+</html>

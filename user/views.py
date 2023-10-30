@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .forms import OptionsForm
+from .forms import OptionsForm,PayingForm
 from django.views.generic import View
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
@@ -20,6 +20,19 @@ class OptionsFormView(View):
          newUser = form.save()
          return redirect('homepage')
       return render(request,'form.html',{'form':form})
+    
+class PayingFormView(View):
+    def get(self,request,*args,**kwargs):
+      return render(request,'paying.html')
+    
+
+
+    def post(self,request,*args,**kwargs):
+      form = PayingForm(request.POST)
+      if form.is_valid():
+         payingmethod = form.save()
+         return redirect('homepage')
+      return render(request,'paying.html',{'form':form})
     
 
 class LoginFormView(View):
