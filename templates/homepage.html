@@ -4,7 +4,22 @@
 
 {% block container %}
 
+{% if ıtems  %}
+<div class="box" style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr;">
+{% for ıtem in ıtems %}
 
+<div class="content" style="border: 1px solid black; text-align: center;">
+<img src="{{ıtem.image.url}}" alt="" width="100">
+<h2> {{ ıtem.name }} </h2>
+<h3>{{ ıtem.price}} TL</h3>
+<p> {{ ıtem.content }} </p>
+</div>
+
+
+{% endfor %}
+</div>
+
+{% endif %}
 
 
 {% endblock %}
