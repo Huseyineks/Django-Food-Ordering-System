@@ -69,7 +69,7 @@
 </head>
 <body>
     <div class="flex">
-   <form method="post">
+   <form method="post" action="{% url 'user:paying' %}">
       {% csrf_token %}
     <h2>Choose How to Pay</h2>
     <div class="flex">
@@ -83,7 +83,7 @@
    <div class="box">
    <input type="radio" id="Credit Card At The Door" name="payoptions" value="Credit Card At The Door">
    <label for="Credit Card At The Door">Credit Card At The Door</label></div>
-   <button type="submit" value="Submit">Confirm</button>
+   <button type="submit" value="{{id}}" name="ids">Confirm</button>
    </div>
 </div>
 </form>

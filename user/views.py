@@ -4,6 +4,8 @@ from django.views.generic import View
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django import forms
+from App.models import Item,Paying,Options
+from .models import OrderedItem
 
 
 
@@ -17,8 +19,17 @@ class OptionsFormView(View):
     def post(self,request,*args,**kwargs):
       form = OptionsForm(request.POST)
       if form.is_valid():
-         newUser = form.save()
-         return redirect('homepage')
+         newOption = form.save(commit=False)
+         newOption.id = request.POST.get('ids')
+         newOption.save() 
+         
+         
+         context = dict(
+           id = request.POST.get('ids')
+         )
+         return render(request,'paying.html',context)
+         
+         
       return render(request,'form.html',{'form':form})
     
 class PayingFormView(View):
@@ -30,7 +41,15 @@ class PayingFormView(View):
     def post(self,request,*args,**kwargs):
       form = PayingForm(request.POST)
       if form.is_valid():
-         payingmethod = form.save()
+         payingmethod = form.save(commit=False)
+         payingmethod.id = request.POST.get('ids')
+         payingmethod.save()
+         item = Item.objects.get(id = request.POST.get('ids'))
+         options = Options.objects.get(id = request.POST.get('ids'))
+         paying = Paying.objects.get(id = request.POST.get('ids'))
+         ordereditem = OrderedItem.objects.create(name = item.name,price = item.price,size = options.size,temp = options.temp,request = options.request,payoptions = paying.payoptions)
+        
+        
          return redirect('homepage')
       return render(request,'paying.html',{'form':form})
     
@@ -81,6 +100,42 @@ def logOut(request):
   logout(request)
   return redirect('homepage')         
       
+def order(request,id):
+  item = Item.objects.get(id = id)
+  if request.POST.get('control') == 'clicked':
+     
+   context = dict(
+     id = item.id
+     
+   )
+   return render(request,'form.html',context)
+  
+  context = dict(
+     item = item
+  )
+  return render(request,'order.html',context)
+  
+class İnformationUpdateFormView(View):
+    
 
+    def get(self,request,*args,**kwargs):
+      return render(request,'register.html')
+    
+
+
+    def post(self,request,*args,**kwargs):
+      username = request.POST.get('username')
+      password = request.POST.get('password')
+      confirmpassword = request.POST.get('confirm-password')
+      email = request.POST.get('email')
+      if password != confirmpassword:
+        return render(request,'register.html',{'error':True})
+      elif not password and not confirmpassword and not username and not email:
+        return render(request,'register.html',{'error2':True})
+      else:
+         newUser = User.objects.create_user(username=username,email=email,password=password)
+         newUser.save()
+         login(request,newUser)
+         return redirect('homepage')
 
 

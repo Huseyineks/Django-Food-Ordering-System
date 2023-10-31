@@ -3,16 +3,19 @@
 
 
 {% block container %}
+{% load static %}
 
-{% if ıtems  %}
+{% if items  %}
 <div class="box" style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr;">
-{% for ıtem in ıtems %}
+{% for item in items %}
 
 <div class="content" style="border: 1px solid black; text-align: center;">
-<img src="{{ıtem.image.url}}" alt="" width="100">
-<h2> {{ ıtem.name }} </h2>
-<h3>{{ ıtem.price}} TL</h3>
-<p> {{ ıtem.content }} </p>
+    <a href="{% url 'user:order' item.id %}">
+<img src="{{item.image.url}}" alt="" width="100">
+</a>
+<a href="{% url 'user:order' item.id %}"><h2> {{ item.name }} </h2></a>
+<a href="{% url 'user:order' item.id %}"><h3>{{ item.price}} TL</h3></a>
+<a href="{% url 'user:order' item.id %}"><p> {{ item.content }} </p></a>
 </div>
 
 

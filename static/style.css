@@ -1,0 +1,14 @@
+.icon-links > a {
+    text-decoration: none;
+    color: inherit;
+
+   
+}
+.icon-links{
+    display: flex;
+    gap: 10px;
+}
+.content > a {
+    text-decoration: none;
+    color: inherit;
+}

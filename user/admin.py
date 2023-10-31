@@ -1,3 +1,6 @@
 from django.contrib import admin
-
-# Register your models here.
+from .models import OrderedItem
+@admin.register(OrderedItem)
+class AppAdmin(admin.ModelAdmin):
+    class Meta:
+     model = OrderedItem
