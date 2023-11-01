@@ -10,6 +10,8 @@ urlpatterns = [
     path('login/', views.LoginFormView.as_view(),name='login'),
     path('logout/', views.logOut,name='logout'),
     path('order/<int:id>', views.order,name='order'),
+    path('basket/', views.basket,name='basket'),
+    path('information/', views.InformationUpdateFormView.as_view(),name='information'),
     
 
 ]

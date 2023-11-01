@@ -47,8 +47,8 @@ class PayingFormView(View):
          item = Item.objects.get(id = request.POST.get('ids'))
          options = Options.objects.get(id = request.POST.get('ids'))
          paying = Paying.objects.get(id = request.POST.get('ids'))
-         ordereditem = OrderedItem.objects.create(name = item.name,price = item.price,size = options.size,temp = options.temp,request = options.request,payoptions = paying.payoptions)
-        
+         ordereditem = OrderedItem.objects.create(user = request.user,name = item.name,price = item.price,size = options.size,temp = options.temp,request = options.request,payoptions = paying.payoptions)
+         
         
          return redirect('homepage')
       return render(request,'paying.html',{'form':form})
@@ -118,24 +118,54 @@ def order(request,id):
 class InformationUpdateFormView(View):
     
 
-    def get(self,request,*args,**kwargs):
-      return render(request,'register.html')
+   def get(self,request,*args,**kwargs):
+      get_User = User.objects.get(username = request.user)
+      context = dict(
+        form = get_User
+      )
+      return render(request,'information.html',context)
     
 
 
-    def post(self,request,*args,**kwargs):
+   def post(self,request,*args,**kwargs):
+      
       username = request.POST.get('username')
       password = request.POST.get('password')
       confirmpassword = request.POST.get('confirm-password')
       email = request.POST.get('email')
       if password != confirmpassword:
-        return render(request,'register.html',{'error':True})
+        return render(request,'information.html',{'error':True})
       elif not password and not confirmpassword and not username and not email:
-        return render(request,'register.html',{'error2':True})
+        return render(request,'information.html',{'error2':True})
       else:
-         newUser = User.objects.create_user(username=username,email=email,password=password)
-         newUser.save()
-         login(request,newUser)
+         get_User = User.objects.get(username = request.user)
+        
+         if (get_User.username != username) and (username is not None):
+           get_User.username = username
+         else:
+           get_User.username = get_User.username
+         if (get_User.password != password) and (password is not None):
+           get_User.password = password
+         else:
+           get_User.password = get_User.password
+         if (get_User.email != email) and (email is not None):
+           get_User.email = email
+         else:
+           get_User.email = get_User.email
+                
+        
+             
+         get_User.save()
+         login(request,get_User)
          return redirect('homepage')
+      
+
+
+def basket(request):
+  orders = OrderedItem.objects.filter(user = request.user)
+  context = dict(
+    orders = orders
+  )
+  return render(request,'basket.html',context)    
 
 
