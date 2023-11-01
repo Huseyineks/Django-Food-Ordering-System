@@ -115,7 +115,7 @@ def order(request,id):
   )
   return render(request,'order.html',context)
   
-class İnformationUpdateFormView(View):
+class InformationUpdateFormView(View):
     
 
     def get(self,request,*args,**kwargs):
