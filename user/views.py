@@ -18,7 +18,14 @@ class OptionsFormView(View):
 
     def post(self,request,*args,**kwargs):
       form = OptionsForm(request.POST)
-      if form.is_valid():
+      size = request.POST.get('size')
+      temp = request.POST.get('temp')
+      if (size is None) or (temp is None):
+        context = dict(
+          error = 'Fill in the blanks!'
+        )
+        return render(request,'form.html',context)
+      elif form.is_valid():
          newOption = form.save(commit=False)
          newOption.id = request.POST.get('ids')
          newOption.save() 
@@ -40,7 +47,13 @@ class PayingFormView(View):
 
     def post(self,request,*args,**kwargs):
       form = PayingForm(request.POST)
-      if form.is_valid():
+      payoptions = request.POST.get('payoptions')
+      if payoptions is None:
+        context = dict(
+          error = 'Fill in the blanks!'
+        )
+        return render(request,'paying.html',context)
+      elif form.is_valid():
          payingmethod = form.save(commit=False)
          payingmethod.id = request.POST.get('ids')
          payingmethod.save()

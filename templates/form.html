@@ -7,6 +7,7 @@
     <style>
       body{
          height: 300vh;
+         
       }
        .box{
         
@@ -59,6 +60,18 @@
        button:hover{
          width: 20%;
        }
+       .alert{
+         position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+       }
+       .alert-danger{
+         color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+       }
        
 
     </style>
@@ -92,6 +105,11 @@
    <textarea name="request" id="" cols="70" rows="10" placeholder="Please mention more..." style="border-radius: 20px; padding: 10px; margin-top: 30px;"></textarea>
    </div>
    <button type="submit" value="{{id}}" name="ids">Add</button>
+   {% if error  %}
+        <div class="alert alert-danger" style="margin-top: 10px;">
+            Fill in the blanks
+          </div>
+          {% endif %}
 </form>
 </body>
 </html>
