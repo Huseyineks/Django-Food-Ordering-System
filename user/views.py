@@ -20,11 +20,10 @@ class OptionsFormView(View):
       form = OptionsForm(request.POST)
       size = request.POST.get('size')
       temp = request.POST.get('temp')
+      ids = request.POST.get('ids')
       if (size is None) or (temp is None):
-        context = dict(
-          error = 'Fill in the blanks!'
-        )
-        return render(request,'form.html',context)
+      
+        return render(request,'form.html',{'error':True,'id' : ids})
       elif form.is_valid():
          newOption = form.save(commit=False)
          newOption.id = request.POST.get('ids')
@@ -48,11 +47,10 @@ class PayingFormView(View):
     def post(self,request,*args,**kwargs):
       form = PayingForm(request.POST)
       payoptions = request.POST.get('payoptions')
+      ids = request.POST.get('ids')
       if payoptions is None:
-        context = dict(
-          error = 'Fill in the blanks!'
-        )
-        return render(request,'paying.html',context)
+        
+        return render(request,'paying.html',{'error':True,'id' : ids})
       elif form.is_valid():
          payingmethod = form.save(commit=False)
          payingmethod.id = request.POST.get('ids')
