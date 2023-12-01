@@ -7,13 +7,17 @@
 
 {% if orders  %}
 
-<div class="box" style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr;">
+<div class="basket">
 {% for item in orders %}
 
-<div class="content" style="border: 1px solid black; text-align: center;">
+<div class="basket-content">
+    <div class="basket-grid-1">
+<img src="{{item.image.url}}" alt="" width="50%">
+</div>
+<div class="basket-grid-2">
 <a href="{% url 'user:order' item.id %}"><h2> {{ item.name }} </h2></a>
-<a href="{% url 'user:order' item.id %}"><h3>{{ item.price}} TL</h3></a>
-<a href="{% url 'user:order' item.id %}"><p> {{ item.content }} </p></a>
+<a href="{% url 'user:order' item.id %}" style="font-size: larger;"><p> {{ item.created_at }} </p></a>
+</div>
 </div>
 
 

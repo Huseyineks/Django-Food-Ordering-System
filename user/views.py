@@ -58,7 +58,7 @@ class PayingFormView(View):
          item = Item.objects.get(id = request.POST.get('ids'))
          options = Options.objects.get(id = request.POST.get('ids'))
          paying = Paying.objects.get(id = request.POST.get('ids'))
-         ordereditem = OrderedItem.objects.create(user = request.user,name = item.name,price = item.price,size = options.size,temp = options.temp,request = options.request,payoptions = paying.payoptions)
+         ordereditem = OrderedItem.objects.create(user = request.user,name = item.name,price = item.price,size = options.size,temp = options.temp,request = options.request,payoptions = paying.payoptions,image = item.image)
          
         
          return redirect('homepage')
