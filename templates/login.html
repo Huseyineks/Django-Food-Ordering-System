@@ -6,7 +6,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Document</title>
     <style>
-       
+       body{
+        background-color: #F0EBCE;
+       }
         label{
             display: block;
             margin-bottom: 15px;
@@ -28,7 +30,7 @@
             height: 50px;
             border: 1px ;
             border-radius: 20px;
-            background-color: rgb(223, 41, 41);
+            background-color: #395144;
             color: aliceblue;
         }
         button:hover{
@@ -38,7 +40,7 @@
             padding: 15px;
             height: 60px;
             width: 500px;
-            border:1px solid;
+            border:1px;
             border-radius: 20px;
             margin-bottom: 30px;
         }
@@ -50,20 +52,22 @@
             text-decoration: underline;
         }
 
-        
+        .txt{
+            color:#395144;
+        }
     </style>
 </head>
 <body>
     <form action="" method="post">
         {% csrf_token %}
         <div class="form">
-        <h2 style="text-align: center;">Log In</h2>
+        <h2 style="text-align: center;" class="txt">Log In</h2>
         <div class="content">
-            <label for="Username" style="margin-left: 5px;">Username</label>
+            <label for="Username" style="margin-left: 5px;" class="txt">Username</label>
         <input type="text" name="username" id="Username" placeholder="Username">
     </div>
     <div class="content">
-        <label for="Password" style="margin-left: 5px;">Password</label>
+        <label for="Password" style="margin-left: 5px;" class="txt">Password</label>
         <input type="password" name="password" id="Password" placeholder="Password"></div>
         
         <button type="submit" value="Submit">Log in</button>
@@ -72,7 +76,7 @@
           
         {% endif %}
         <div class="a">
-        <a href="{% url 'user:register' %}" style="color: #000000;">Create a account</a></div>
+        <a href="{% url 'user:register' %}" style="color: #000000;" >Create a account</a></div>
         </div>
 
 

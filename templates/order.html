@@ -4,17 +4,17 @@
 
 {% block container %}
 {% load static %}
-
+<div class="order-content">
 <img src="{{item.image.url}}" alt="sa" width="100">
-<h2> {{item.name}} </h2>
-<h3> {{item.price}} </h3>
+<h2 class="txt"> {{item.name}} </h2>
+<h3 class="txt"> {{item.price}} TL </h3>
 
-<p> {{item.content}} </p>
+<p class="txt"> {{item.content}} </p>
 
 <form method='post' action="">
     {% csrf_token %}
-    <button type="submit" value="clicked" name="control">Confirm</button>
+    <button type="submit" value="clicked" name="control" class="order-button">Confirm</button>
 </form>
 
-
+</div>
 {% endblock %}

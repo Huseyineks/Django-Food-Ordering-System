@@ -75,3 +75,18 @@
     text-decoration: none;
     color: inherit;
 }
+.order-content{
+    text-align: center;
+}
+.txt{
+    color: #395144;
+}
+.order-button{
+    padding: 5px; 
+    background-color:#395144 ; 
+    border-radius: 10px; 
+    width: 15%; 
+    margin-top: 10px; 
+    color: aliceblue; 
+    border: 1px solid;
+}

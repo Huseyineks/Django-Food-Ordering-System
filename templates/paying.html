@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-
+        body{
+        background-color: #F0EBCE;
+       }
        .box{
         
         padding: 20px;
@@ -13,7 +15,7 @@
         
        } 
        .box:hover{
-        color: red;
+        color: #395144;
         background:rgb(0,0,0,0.1);
        }
       
@@ -31,23 +33,23 @@
         height: 15px;
         width: 15px;
         border-radius: 50%;
-        border: 2px solid rgb(223, 41, 41);
+        border: 2px solid #395144;
        }
        .box:hover label::before{
           height: 13px;
     width: 13px;
-    border: 3px solid rgb(223, 41, 41); 
+    border: 3px solid #395144; 
     
        }
        input[type = 'radio']:checked +  label::before{
         height: 9px;
     width: 9px;
-    border: 5px solid rgb(223, 41, 41);
+    border: 5px solid #395144;
        }
      
        button{
          padding: 5px; 
-         background-color:rgb(223, 41, 41) ; 
+         background-color:#395144 ; 
          border-radius: 10px; 
          width: 15%; 
          margin-top: 10px; 
@@ -83,7 +85,7 @@
     <div class="flex">
    <form method="post" action="{% url 'user:paying' %}">
       {% csrf_token %}
-    <h2>Choose How to Pay</h2>
+    <h2 style="color: #395144;">Choose How to Pay</h2>
     <div class="flex">
     <div class="box">
    <input type="radio" id="Online Credit Card" name="payoptions" value="Online Credit Card">
